@@ -146,7 +146,10 @@ const LandingPage = () => {
           {navigationItems.map(item => (
             item.dropdown ? (
               <div key={item.id} className={styles.dropdown}>
-                <button className={`${styles.navButton} ${currentPage === item.id ? styles.active : ''}`}>
+                <button 
+                  className={`${styles.navButton} ${currentPage === item.id ? styles.active : ''}`}
+                  onClick={() => setCurrentPage(item.id)}
+                >
                   {item.icon} {item.label}
                 </button>
                 <div className={styles.dropdownMenu}>
@@ -219,6 +222,190 @@ const LandingPage = () => {
     </nav>
   );
 
+  const renderAICareerExplorer = () => (
+    <div className={styles.aiCareerExplorer}>
+      <div className={styles.careerHero}>
+        <h1 className={styles.careerTitle}>AI Career Explorer</h1>
+        <p className={styles.careerSubtitle}>
+          Discover your ideal career path with AI-powered recommendations
+        </p>
+      </div>
+      
+      <div className={styles.careerContent}>
+        <div className={styles.interestsSection}>
+          <h2 className={styles.sectionTitle}>Tell us about your interests</h2>
+          <p className={styles.sectionDescription}>
+            Describe your interests, skills, and what you enjoy doing...
+          </p>
+          
+          <div className={styles.inputContainer}>
+            <textarea
+              className={styles.interestsInput}
+              placeholder="Example: I enjoy solving problems, working with technology, and creative thinking. I'm good at math and science..."
+              value={interests}
+              onChange={(e) => setInterests(e.target.value)}
+              rows={6}
+            />
+          </div>
+          
+          <button 
+            className={styles.exploreButton}
+            onClick={exploreCareer}
+            disabled={!interests.trim()}
+          >
+            Explore Career Paths
+          </button>
+        </div>
+        
+        {careerSuggestions && (
+          <div className={styles.suggestionsSection}>
+            <h2 className={styles.suggestionsTitle}>Career Suggestions</h2>
+            <div className={styles.suggestionsGrid}>
+              {careerSuggestions.map((career, index) => (
+                <div key={index} className={styles.careerCard}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.careerCardTitle}>{career.title}</h3>
+                    <span className={styles.matchBadge}>{career.match} Match</span>
+                  </div>
+                  <p className={styles.careerDescription}>{career.description}</p>
+                  <div className={styles.skillsSection}>
+                    <h4 className={styles.skillsTitle}>Key Skills:</h4>
+                    <div className={styles.skillsList}>
+                      {career.skills.map((skill, skillIndex) => (
+                        <span key={skillIndex} className={styles.skillTag}>
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.careerDetails}>
+                    <div className={styles.detailItem}>
+                      <span className={styles.detailLabel}>Salary Range:</span>
+                      <span className={styles.detailValue}>{career.salary}</span>
+                    </div>
+                    <div className={styles.detailItem}>
+                      <span className={styles.detailLabel}>Growth Potential:</span>
+                      <span className={styles.detailValue}>{career.growth}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const renderAIStudyTools = () => (
+    <div className={styles.aiToolsPage}>
+      <div className={styles.toolsHero}>
+        <h1 className={styles.toolsTitle}>AI Study Tools</h1>
+        <p className={styles.toolsSubtitle}>
+          Upload your study notes and generate AI-powered quizzes to test your knowledge
+        </p>
+      </div>
+      
+      <div className={styles.toolsContent}>
+        <div className={styles.uploadSection}>
+          <h2 className={styles.sectionTitle}>Upload Your Notes</h2>
+          <p className={styles.sectionDescription}>
+            Upload text files or paste your study notes below to generate quizzes
+          </p>
+          
+          <div className={styles.uploadArea}>
+            <input
+              type="file"
+              accept=".txt,.md,.docx"
+              onChange={handleFileUpload}
+              className={styles.fileInput}
+              id="file-upload"
+            />
+            <label htmlFor="file-upload" className={styles.uploadLabel}>
+              <div className={styles.uploadIcon}>📁</div>
+              <span>Choose a file or drag and drop here</span>
+              <span className={styles.uploadHint}>Text files only (.txt, .md, .docx)</span>
+            </label>
+          </div>
+          
+          <div className={styles.textAreaContainer}>
+            <textarea
+              className={styles.notesInput}
+              placeholder="Or paste your notes here directly..."
+              value={notesInput}
+              onChange={(e) => setNotesInput(e.target.value)}
+              rows={8}
+            />
+          </div>
+          
+          <button 
+            className={styles.generateButton}
+            onClick={generateQuiz}
+            disabled={!notesInput.trim() || isGenerating}
+          >
+            {isGenerating ? 'Generating Quiz...' : 'Generate Quiz'}
+          </button>
+        </div>
+        
+        {currentQuiz && !showResults && (
+          <div className={styles.quizSection}>
+            <h2 className={styles.quizTitle}>{currentQuiz.title}</h2>
+            <div className={styles.quizProgress}>
+              Question {currentQuestionIndex + 1} of {currentQuiz.questions.length}
+            </div>
+            <div className={styles.questionCard}>
+              <h3 className={styles.questionText}>
+                {currentQuiz.questions[currentQuestionIndex].question}
+              </h3>
+              <div className={styles.optionsGrid}>
+                {currentQuiz.questions[currentQuestionIndex].options.map((option, index) => (
+                  <button
+                    key={index}
+                    className={styles.optionButton}
+                    onClick={() => handleQuizAnswer(index)}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {showResults && (
+          <div className={styles.resultsSection}>
+            <h2 className={styles.resultsTitle}>Quiz Results</h2>
+            <div className={styles.scoreCard}>
+              <div className={styles.scoreCircle}>
+                <span className={styles.scoreText}>
+                  {score} / {currentQuiz.questions.length}
+                </span>
+                <span className={styles.scorePercentage}>
+                  {Math.round((score / currentQuiz.questions.length) * 100)}%
+                </span>
+              </div>
+              <p className={styles.scoreMessage}>
+                {score === currentQuiz.questions.length ? 'Excellent! Perfect score!' :
+                 score >= currentQuiz.questions.length / 2 ? 'Good job! Keep practicing!' :
+                 'Keep studying! You\'ll get better!'}
+              </p>
+              <button 
+                className={styles.retryButton}
+                onClick={() => {
+                  setCurrentQuestionIndex(0);
+                  setScore(0);
+                  setShowResults(false);
+                }}
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   const renderPageContent = () => {
     switch (currentPage) {
       case 'home':
@@ -234,7 +421,7 @@ const LandingPage = () => {
                     <button 
                       onClick={() => {
                         setUserType('highschool');
-                        setCurrentPage('ai-tools');
+                        setCurrentPage('ai-career-explorer');
                       }} 
                       className={styles.studentCard}
                     >
@@ -276,7 +463,77 @@ const LandingPage = () => {
             </div>
           </div>
         );
-      // Add other cases for different pages
+      
+      case 'ai-career-explorer':
+        return renderAICareerExplorer();
+      
+      case 'ai-tools':
+        return renderAIStudyTools();
+      
+      case 'about':
+        return (
+          <div className={styles.aboutPage}>
+            <h1>About Us</h1>
+            <p>Learn more about EduPath and our mission</p>
+          </div>
+        );
+      
+      case 'contact':
+        return (
+          <div className={styles.contactPage}>
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team</p>
+          </div>
+        );
+      
+      case 'staff':
+        return (
+          <div className={styles.staffPage}>
+            <h1>Staff Directory</h1>
+            <p>Meet our team members</p>
+          </div>
+        );
+      
+      case 'news':
+        return (
+          <div className={styles.newsPage}>
+            <h1>News & Announcements</h1>
+            <p>Latest updates from EduPath</p>
+          </div>
+        );
+      
+      case 'programs':
+        return (
+          <div className={styles.programsPage}>
+            <h1>Academic Programs</h1>
+            <p>Explore our educational programs</p>
+          </div>
+        );
+      
+      case 'calendar':
+        return (
+          <div className={styles.calendarPage}>
+            <h1>Calendar & Events</h1>
+            <p>Upcoming events and important dates</p>
+          </div>
+        );
+      
+      case 'portal':
+        return (
+          <div className={styles.portalPage}>
+            <h1>Student Portal</h1>
+            <p>Access your student dashboard</p>
+          </div>
+        );
+      
+      case 'gallery':
+        return (
+          <div className={styles.galleryPage}>
+            <h1>Photo Gallery</h1>
+            <p>View photos from our events and activities</p>
+          </div>
+        );
+      
       default:
         return (
           <div className={styles.homePage}>

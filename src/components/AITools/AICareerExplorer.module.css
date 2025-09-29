@@ -1,0 +1,242 @@
+/* components/AICareerExplorer/AICareerExplorer.module.css */
+.aiCareerExplorer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.careerHero {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding-top: 40px;
+}
+
+.careerTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.careerSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.careerContent {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.interestsSection {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.sectionDescription {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.inputContainer {
+  margin-bottom: 24px;
+}
+
+.interestsInput {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.interestsInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.interestsInput::placeholder {
+  color: #999;
+}
+
+.exploreButton {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.exploreButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.exploreButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.suggestionsSection {
+  margin-top: 40px;
+}
+
+.suggestionsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.suggestionsGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.careerCard {
+  border: 1px solid #e1e5e9;
+  border-radius: 16px;
+  padding: 24px;
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.careerCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.careerCard .careerTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.matchBadge {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.careerDescription {
+  color: #666;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.skillsSection {
+  margin-bottom: 16px;
+}
+
+.skillsTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillTag {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  border: 1px solid #e9ecef;
+}
+
+.careerDetails {
+  display: grid;
+  gap: 8px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailLabel {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 0.875rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .aiCareerExplorer {
+    padding: 10px;
+  }
+  
+  .careerTitle {
+    font-size: 2rem;
+  }
+  
+  .careerContent {
+    padding: 24px;
+    margin: 0 10px;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .matchBadge {
+    align-self: flex-start;
+  }
+  
+  .suggestionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .suggestionsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}

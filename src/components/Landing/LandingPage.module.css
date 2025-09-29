@@ -366,3 +366,537 @@
     padding: 1rem;
   }
 }
+
+.aiCareerExplorer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.careerHero {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding-top: 40px;
+}
+
+.careerTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.careerSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.careerContent {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.interestsSection {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.sectionDescription {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.inputContainer {
+  margin-bottom: 24px;
+}
+
+.interestsInput {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.interestsInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.interestsInput::placeholder {
+  color: #999;
+}
+
+.exploreButton {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.exploreButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.exploreButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.suggestionsSection {
+  margin-top: 40px;
+}
+
+.suggestionsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.suggestionsGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.careerCard {
+  border: 1px solid #e1e5e9;
+  border-radius: 16px;
+  padding: 24px;
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.careerCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.careerCardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.matchBadge {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.careerDescription {
+  color: #666;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.skillsSection {
+  margin-bottom: 16px;
+}
+
+.skillsTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillTag {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  border: 1px solid #e9ecef;
+}
+
+.careerDetails {
+  display: grid;
+  gap: 8px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailLabel {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 0.875rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* AI Study Tools Styles */
+.aiToolsPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.toolsHero {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  padding-top: 40px;
+}
+
+.toolsTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.toolsSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.toolsContent {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.uploadSection {
+  margin-bottom: 40px;
+}
+
+.uploadArea {
+  border: 2px dashed #e1e5e9;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 24px;
+  transition: border-color 0.3s ease;
+}
+
+.uploadArea:hover {
+  border-color: #667eea;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadLabel {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #666;
+}
+
+.uploadIcon {
+  font-size: 2.5rem;
+}
+
+.uploadHint {
+  font-size: 0.875rem;
+  color: #999;
+}
+
+.textAreaContainer {
+  margin-bottom: 24px;
+}
+
+.notesInput {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.notesInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.generateButton {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.generateButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.generateButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.quizSection {
+  margin-top: 40px;
+}
+
+.quizTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.quizProgress {
+  text-align: center;
+  color: #666;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.questionCard {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.questionText {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.optionsGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.optionButton {
+  padding: 16px 24px;
+  background: white;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.optionButton:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+}
+
+.resultsSection {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.resultsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.scoreCard {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.scoreCircle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: white;
+}
+
+.scoreText {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.scorePercentage {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.scoreMessage {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.retryButton {
+  padding: 12px 32px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.retryButton:hover {
+  background: #5a6fd8;
+}
+
+/* Other Pages Basic Styles */
+.aboutPage,
+.contactPage,
+.staffPage,
+.newsPage,
+.programsPage,
+.calendarPage,
+.portalPage,
+.galleryPage {
+  min-height: 80vh;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aboutPage h1,
+.contactPage h1,
+.staffPage h1,
+.newsPage h1,
+.programsPage h1,
+.calendarPage h1,
+.portalPage h1,
+.galleryPage h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.aboutPage p,
+.contactPage p,
+.staffPage p,
+.newsPage p,
+.programsPage p,
+.calendarPage p,
+.portalPage p,
+.galleryPage p {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .careerTitle,
+  .toolsTitle {
+    font-size: 2rem;
+  }
+  
+  .careerContent,
+  .toolsContent {
+    padding: 24px;
+    margin: 0 10px;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .matchBadge {
+    align-self: flex-start;
+  }
+  
+  .suggestionsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .uploadArea {
+    padding: 20px;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+}
+
+@media (min-width: 769px) {
+  .suggestionsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
