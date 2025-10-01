@@ -3,7 +3,8 @@ import styles from './Calender.module.css';
 
 const Calendar = () => {
 
-  const calenderData = {
+  const calendarData = {
+
 
     events: [
       {
@@ -91,14 +92,14 @@ const Calendar = () => {
   }
 
   return (
-    <div className={styles.calenderContainer}>
-      <div className={styles.calenderHeader}>
-        <h2 className={styles.calenderTitle}>Academic Calendar & Events</h2>
+    <div className={styles.calendarContainer}>
+      <div className={styles.calendarHeader}>
+        <h2 className={styles.calendarTitle}>Academic Calendar & Events</h2>
       </div>
-      <div className={styles.calenderContent}>
+      <div className={styles.calendarContent}>
         <div className={styles.eventsSection}>
           <h3 className={styles.sectionTitle}>Upcoming Events</h3>
-          {calenderData.events.map((event, index) => (
+          {calendarData.events.map((event, index) => (
             <div key={index} className={styles.eventCard}>
               <h4 className={styles.eventTitle}>{event.title}</h4>
               <p className={styles.eventDateTime}>{event.date} | {event.time}</p>
@@ -109,7 +110,7 @@ const Calendar = () => {
         </div>
         <div className={styles.academicCalendarSection}>
           <h3 className={styles.sectionTitle}>Academic Calendar</h3>
-          {calenderData.academicCalendar.map((semester, index) => (
+          {calendarData.academicCalendar.map((semester, index) => (
             <div key={index} className={styles.semesterCard}>
               <h4 className={styles.semesterTitle}>{semester.period}</h4>
               <p className={styles.semesterDates}>From {semester.startDate} to {semester.endDate}</p>

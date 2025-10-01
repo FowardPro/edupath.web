@@ -114,7 +114,7 @@ git branch -vv
 
 ---
 
-## 🚦 Example Workflow
+## 🚦 Example Workflow of the day that you need to day 
 ```bash
 git checkout kele
 git pull

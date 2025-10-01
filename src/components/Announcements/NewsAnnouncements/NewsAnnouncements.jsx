@@ -43,12 +43,12 @@ const NewsAnnouncements = () => {
       <div className={styles.announcementsList}>
         {newsData.map((news, index) => (
           <div key={index} className={`${styles.announcementCard} ${news.featured ? styles.featuredAnnouncement : ''}`}>
-            <div className={styles.announcementHeader}>
-              <span className={`${styles.announcementCategory} ${styles[news.category.toLowerCase()]}`}>{news.category}</span>
-              <span className={styles.announcementDate}>{news.date}</span>
+            <div className={styles.announcementNewsHeader}>
+              <span className={`${styles.announcementNewsCategory} ${styles[news.category.toLowerCase()]}`}>{news.category}</span>
+              <span className={styles.announcementNewsDate}>{news.date}</span>
             </div>
-            <h3 className={styles.announcementTitle}>{news.title}</h3>
-            <p className={styles.announcementExcerpt}>{news.excerpt}</p>
+            <h3 className={styles.announcementNewsTitle}>{news.title}</h3>
+            <p className={styles.announcementNewsExcerpt}>{news.excerpt}</p>
             <button className={styles.readMoreButton}>Read More</button>
           </div>
         ))}

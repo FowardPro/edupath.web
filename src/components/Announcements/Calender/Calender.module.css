@@ -1,6 +1,6 @@
 @import url("../index.css");
 
-.calenderContainer {
+.calendarContainer {
     padding: 0 1rem 3rem;
     min-height: calc(100vh - 4rem);
     background: linear-gradient(120deg, #0c0909, #06cc8a, #1f9481);
@@ -19,14 +19,14 @@
         background-position: 0% 50%;
     }
 }
-.calenderHeader {
+.calendarHeader {
     text-align: center;
     padding: 0rem 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.calenderTitle {
+.calendarTitle {
     font-size: 3rem;
     font-weight: bold;
     background: linear-gradient(45deg, #06cc8a, #1f9481, #0c0909);
