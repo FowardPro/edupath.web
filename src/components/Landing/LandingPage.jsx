@@ -1,6 +1,10 @@
 // components/LandingPage/LandingPage.jsx
 import React, { useState } from 'react';
 import styles from './LandingPage.module.css';
+import NewsAnnouncements from '../Announcements/NewAnnouncements/NewsAnnouncements.jsx';
+import Programs from '../Announcements/Programs/Programs.jsx';
+import Calendar from '../Announcements/Calender/Calender.jsx';
+
 
 const LandingPage = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -141,7 +145,7 @@ const LandingPage = () => {
           <span className={styles.navIcon}>🧠</span>
           <span className={styles.navLogo}>EduPath</span>
         </div>
-        
+
         <div className={styles.desktopNav}>
           {navigationItems.map(item => (
             item.dropdown ? (
@@ -231,22 +235,22 @@ const LandingPage = () => {
                   <h1 className={styles.heroTitle}>Welcome to EduPath</h1>
                   <p className={styles.heroSubtitle}>Empowering students with AI-driven career exploration and intelligent study tools</p>
                   <div className={styles.studentCards}>
-                    <button 
+                    <button
                       onClick={() => {
                         setUserType('highschool');
                         setCurrentPage('ai-tools');
-                      }} 
+                      }}
                       className={styles.studentCard}
                     >
                       <div className={styles.cardIcon}>🎯</div>
                       <h3 className={styles.cardTitle}>High School Students</h3>
                       <p className={styles.cardText}>AI-powered career exploration and guidance</p>
                     </button>
-                    <button 
+                    <button
                       onClick={() => {
                         setUserType('university');
                         setCurrentPage('ai-tools');
-                      }} 
+                      }}
                       className={styles.studentCard}
                     >
                       <div className={styles.cardIcon}>🧠</div>
@@ -274,6 +278,24 @@ const LandingPage = () => {
                 <p className={styles.featureText}>Monitor your learning journey and career exploration progress</p>
               </div>
             </div>
+          </div>
+        );
+      case 'news':
+        return (
+          <div className={styles.announcementsPage}>
+            <NewsAnnouncements />
+          </div>
+        );
+        case  'programs':
+        return (
+          <div className={styles.programsPage}>
+            <Programs />
+          </div>
+        );
+        case  'calendar':
+        return (
+          <div className={styles.calendarPage}>  
+            <Calendar />
           </div>
         );
       // Add other cases for different pages

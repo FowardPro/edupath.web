@@ -1,0 +1,37 @@
+@import url("../index.css");
+
+.calenderContainer {
+    padding: 0 1rem 3rem;
+    min-height: calc(100vh - 4rem);
+    background: linear-gradient(120deg, #0c0909, #06cc8a, #1f9481);
+    animation: gradientAnimation 15s ease infinite;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.calenderHeader {
+    text-align: center;
+    padding: 0rem 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calenderTitle {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #06cc8a, #1f9481, #0c0909);
+    animation: gradientAnimation 15s ease infinite;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+}
