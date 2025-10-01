@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import styles from './LandingPage.module.css';
 import NewsAnnouncements from '../Announcements/NewAnnouncements/NewsAnnouncements.jsx';
-import Programs from '../Announcements/Programs/Programs.jsx';
-import Calendar from '../Announcements/Calender/Calender.jsx';
+import Programs from '../News/Announcements/Programs/Programs.jsx';
+import Calendar from '../NewsAnnouncements/Calender/Calender.jsx';
 
 
 const LandingPage = () => {
