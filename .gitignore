@@ -24,4 +24,4 @@ yarn-error.log*
 
 
 #announcement ignores 
-/announcements/readme.md
+/components/NewsAnnouncements/readme.md
