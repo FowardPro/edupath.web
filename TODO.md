@@ -1,11 +1,9 @@
-- [x] Create AIQuizGenerator.jsx component
-- [x] Create AIQuizGenerator.module.css
-- [x] Update LandingPage.jsx to use AICareerExplorer and AIQuizGenerator components
-- [x] Remove inline rendering functions from LandingPage.jsx
-- [x] Test the components render correctly
-- [x] Integrate Google Gemini API for AICareerExplorer (career recommendations)
-- [x] Integrate Google Gemini API for AIQuizGenerator (quiz generation)
-- [x] Add .env file for API key
-- [x] Add CSS styles for loading, error, and results sections in AICareerExplorer.module.css
-- [x] Add CSS styles for error section in AIQuizGenerator.module.css
-- [x] Test API integrations with valid API key (app running on http://localhost:3003)
+- [x] Create ContactPage component
+- [x] Create StaffPage component
+- [x] Create NewsPage component
+- [x] Create ProgramsPage component
+- [x] Create CalendarPage component
+- [x] Create PortalPage component
+- [x] Create GalleryPage component
+- [x] Import all new components in LandingPage.jsx
+- [x] Update renderPageContent cases to use the new components

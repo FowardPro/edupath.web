@@ -1,14 +1,36 @@
 // components/LandingPage/LandingPage.jsx
 import React, { useState } from 'react';
-import { Home, Users, Phone, Newspaper, UserRound, Camera, BrainCircuit } from 'lucide-react';
+import {
+  Home,
+  Users,
+  Phone,
+  Newspaper,
+  UserRound,
+  Camera,
+  BrainCircuit,
+  Target
+} from 'lucide-react';
+
 import styles from './LandingPage.module.css';
+
 import AICareerExplorer from '../AITools/AICareerExplorer';
 import AIQuizGenerator from '../AITools/AIQuizGenerator';
+import AboutPage from '../About/AboutPage';
+import ContactPage from '../Contact/ContactPage';
+import StaffPage from '../Staff/StaffPage';
+import NewsPage from '../News/NewsPage';
+import ProgramsPage from '../Programs/ProgramsPage';
+import CalendarPage from '../Calendar/CalendarPage';
+import PortalPage from '../Portal/PortalPage';
+import GalleryPage from '../Gallery/GalleryPage';
+import LoginPage from '../Login/LoginPage';
 
 const LandingPage = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const Icon = ({ Cmp }) => <Cmp className={styles.navIcon} aria-hidden />;
 
@@ -48,6 +70,24 @@ const LandingPage = () => {
     setOpenDropdown(openDropdown === id ? null : id);
   };
 
+  const handlePortalClick = () => {
+    if (isLoggedIn) {
+      setCurrentPage('portal');
+    } else {
+      setShowLoginModal(true);
+    }
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    setShowLoginModal(false);
+    setCurrentPage('portal');
+  };
+
+  const handleCloseLogin = () => {
+    setShowLoginModal(false);
+  };
+
   const renderNavigation = () => (
     <nav className={styles.navigation}>
       <div className={styles.navContainer}>
@@ -81,7 +121,7 @@ const LandingPage = () => {
             ) : (
               <button
                 key={item.id}
-                onClick={() => setCurrentPage(item.id)}
+                onClick={item.id === 'portal' ? handlePortalClick : () => setCurrentPage(item.id)}
                 className={`${styles.navButton} ${item.badge ? styles.badge : ''} ${currentPage === item.id ? styles.active : ''}`}
               >
                 <Icon Cmp={item.icon} /> {item.label}
@@ -122,7 +162,11 @@ const LandingPage = () => {
               <button
                 key={item.id}
                 onClick={() => {
-                  setCurrentPage(item.id);
+                  if (item.id === 'portal') {
+                    handlePortalClick();
+                  } else {
+                    setCurrentPage(item.id);
+                  }
                   setIsMobileMenuOpen(false);
                 }}
                 className={`${styles.mobileNavButton} ${currentPage === item.id ? styles.active : ''}`}
@@ -146,37 +190,66 @@ const LandingPage = () => {
               <div className={styles.heroContent}>
                 <div className={styles.heroText}>
                   <h1 className={styles.heroTitle}>Welcome to EduPath</h1>
-                  <p className={styles.heroSubtitle}>Empowering students with AI-driven career exploration and intelligent study tools</p>
-                  <div className={styles.studentCards}>
-                    <button onClick={() => setCurrentPage('ai-career-explorer')} className={styles.studentCard}>
-                      <div className={styles.cardIcon}>🎯</div>
-                      <h3 className={styles.cardTitle}>High School Students</h3>
-                      <p className={styles.cardText}>AI-powered career exploration and guidance</p>
+                  <p className={styles.heroSubtitle}>
+                    Empowering students with AI-driven career exploration and intelligent study tools
+                  </p>
+
+                  {/* === TOP TWO AUDIENCE CARDS === */}
+                  <div className={styles.audienceGrid}>
+                    <button
+                      onClick={() => setCurrentPage('ai-career-explorer')}
+                      className={styles.audienceCard}
+                    >
+                      <div className={styles.audienceIconWrap}>
+                        <Target aria-hidden />
+                      </div>
+                      <h3 className={styles.audienceTitle}>High School Students</h3>
+                      <p className={styles.audienceText}>
+                        AI-powered career exploration and guidance
+                      </p>
                     </button>
-                    <button onClick={() => setCurrentPage('ai-tools')} className={styles.studentCard}>
-                      <div className={styles.cardIcon}>🧠</div>
-                      <h3 className={styles.cardTitle}>University Students</h3>
-                      <p className={styles.cardText}>AI-generated quizzes from your study notes</p>
+
+                    <button
+                      onClick={() => setCurrentPage('ai-tools')}
+                      className={styles.audienceCard}
+                    >
+                      <div className={styles.audienceIconWrap}>
+                        <BrainCircuit aria-hidden />
+                      </div>
+                      <h3 className={styles.audienceTitle}>University Students</h3>
+                      <p className={styles.audienceText}>
+                        AI-generated quizzes from your study notes
+                      </p>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* === THREE FEATURE TILES === */}
             <div className={styles.featuresGrid}>
               <div className={styles.featureCard}>
                 <div className={styles.featureIcon}>🔍</div>
                 <h3 className={styles.featureTitle}>Career Discovery</h3>
-                <p className={styles.featureText}>Explore careers based on your interests and skills with AI recommendations</p>
+                <p className={styles.featureText}>
+                  Explore careers based on your interests and skills with AI recommendations
+                </p>
               </div>
+
               <div className={styles.featureCard}>
                 <div className={styles.featureIcon}>📝</div>
                 <h3 className={styles.featureTitle}>Smart Quizzes</h3>
-                <p className={styles.featureText}>Upload notes and get AI-generated quizzes to test your knowledge</p>
+                <p className={styles.featureText}>
+                  Upload notes and get AI-generated quizzes to test your knowledge
+                </p>
               </div>
+
               <div className={styles.featureCard}>
                 <div className={styles.featureIcon}>📊</div>
                 <h3 className={styles.featureTitle}>Progress Tracking</h3>
-                <p className={styles.featureText}>Monitor your learning journey and career exploration progress</p>
+                <p className={styles.featureText}>
+                  Monitor your learning journey and career exploration progress
+                </p>
               </div>
             </div>
           </div>
@@ -186,67 +259,29 @@ const LandingPage = () => {
       case 'ai-tools':
         return <AIQuizGenerator />;
       case 'about':
-        return (
-          <div className={styles.aboutPage}>
-            <h1>About Us</h1>
-            <p>Learn more about EduPath and our mission</p>
-          </div>
-        );
+        return <AboutPage />;
       case 'contact':
-        return (
-          <div className={styles.contactPage}>
-            <h1>Contact Us</h1>
-            <p>Get in touch with our team</p>
-          </div>
-        );
+        return <ContactPage />;
       case 'staff':
-        return (
-          <div className={styles.staffPage}>
-            <h1>Staff Directory</h1>
-            <p>Meet our team members</p>
-          </div>
-        );
+        return <StaffPage />;
       case 'news':
-        return (
-          <div className={styles.newsPage}>
-            <h1>News & Announcements</h1>
-            <p>Latest updates from EduPath</p>
-          </div>
-        );
+        return <NewsPage />;
       case 'programs':
-        return (
-          <div className={styles.programsPage}>
-            <h1>Academic Programs</h1>
-            <p>Explore our educational programs</p>
-          </div>
-        );
+        return <ProgramsPage />;
       case 'calendar':
-        return (
-          <div className={styles.calendarPage}>
-            <h1>Calendar & Events</h1>
-            <p>Upcoming events and important dates</p>
-          </div>
-        );
+        return <CalendarPage />;
       case 'portal':
-        return (
-          <div className={styles.portalPage}>
-            <h1>Student Portal</h1>
-            <p>Access your student dashboard</p>
-          </div>
-        );
+        return <PortalPage />;
       case 'gallery':
-        return (
-          <div className={styles.galleryPage}>
-            <h1>Photo Gallery</h1>
-            <p>View photos from our events and activities</p>
-          </div>
-        );
+        return <GalleryPage />;
       default:
         return (
           <div className={styles.homePage}>
             <div className={styles.heroSection}>
               <h1 className={styles.heroTitle}>Welcome to EduPath</h1>
-              <p className={styles.heroSubtitle}>Empowering students with AI-driven career exploration and intelligent study tools</p>
+              <p className={styles.heroSubtitle}>
+                Empowering students with AI-driven career exploration and intelligent study tools
+              </p>
             </div>
           </div>
         );
@@ -257,6 +292,9 @@ const LandingPage = () => {
     <div className={styles.container}>
       {renderNavigation()}
       {renderPageContent()}
+      {showLoginModal && (
+        <LoginPage onLogin={handleLogin} onClose={handleCloseLogin} />
+      )}
     </div>
   );
 };
