@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import styles from './AIQuizGenerator.module.css';
+
+const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GOOGLE_API_KEY);
 
 const AIQuizGenerator = () => {
   const [notesInput, setNotesInput] = useState('');
@@ -8,6 +11,7 @@ const AIQuizGenerator = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -19,35 +23,33 @@ const AIQuizGenerator = () => {
     reader.readAsText(file);
   };
 
-  const generateQuiz = () => {
+  const generateQuiz = async () => {
     if (!notesInput.trim()) return;
     setIsGenerating(true);
-    setTimeout(() => {
-      setCurrentQuiz({
-        title: 'AI Generated Quiz',
-        questions: [
-          {
-            question: 'Based on your notes, what is the main concept discussed?',
-            options: ['Option A', 'Option B', 'Option C', 'Option D'],
-            correctAnswer: 0,
-          },
-          {
-            question: 'Which of the following is a key principle mentioned?',
-            options: ['Principle X', 'Principle Y', 'Principle Z', 'None of the above'],
-            correctAnswer: 1,
-          },
-          {
-            question: 'What conclusion can be drawn from the material?',
-            options: ['Conclusion A', 'Conclusion B', 'Conclusion C', 'All of the above'],
-            correctAnswer: 2,
-          },
-        ],
-      });
+    setError(null);
+
+    try {
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      const prompt = `Based on the following study notes, generate a quiz with 5 multiple-choice questions. Each question should have 4 options (A, B, C, D) and one correct answer. Format the response as a JSON object with keys: title (string), questions (array of objects with keys: question (string), options (array of 4 strings), correctAnswer (index 0-3)).
+
+Notes: "${notesInput}"`;
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+
+      // Parse the JSON response
+      const parsedQuiz = JSON.parse(text);
+      setCurrentQuiz(parsedQuiz);
       setCurrentQuestionIndex(0);
       setScore(0);
       setShowResults(false);
+    } catch (err) {
+      console.error('Error generating quiz:', err);
+      setError('Failed to generate quiz. Please try again.');
+    } finally {
       setIsGenerating(false);
-    }, 1000);
+    }
   };
 
   const handleQuizAnswer = (index) => {
@@ -110,6 +112,13 @@ const AIQuizGenerator = () => {
             >
               {isGenerating ? 'Generating Quiz...' : 'Generate Quiz'}
             </button>
+
+            {error && (
+              <div className={styles.error}>
+                <p>{error}</p>
+                <button onClick={() => setError(null)}>Try Again</button>
+              </div>
+            )}
           </div>
         ) : !showResults ? (
           <div className={styles.quizSection}>

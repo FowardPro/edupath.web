@@ -267,6 +267,32 @@
   box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
+.error {
+  background: rgba(255, 100, 100, 0.1);
+  border: 1px solid #ff6464;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  text-align: center;
+  color: #ffcccc;
+}
+
+.error p {
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+
+.error button {
+  background: #ff6464;
+  color: #fff;
+  border: 0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
 @media (max-width: 768px) {
   .toolsTitle {
     font-size: 2rem;

@@ -1,5 +1,6 @@
 // components/LandingPage/LandingPage.jsx
 import React, { useState } from 'react';
+import { Home, Users, Phone, Newspaper, UserRound, Camera, BrainCircuit } from 'lucide-react';
 import styles from './LandingPage.module.css';
 import AICareerExplorer from '../AITools/AICareerExplorer';
 import AIQuizGenerator from '../AITools/AIQuizGenerator';
@@ -9,32 +10,33 @@ const LandingPage = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
 
+  const Icon = ({ Cmp }) => <Cmp className={styles.navIcon} aria-hidden />;
 
   const navigationItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'about', label: 'About Us', icon: '👥' },
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'about', label: 'About Us', icon: Users },
     {
       id: 'connect',
       label: 'Connect',
-      icon: '📞',
+      icon: Phone,
       dropdown: [
-        { id: 'contact', label: 'Contact Us', icon: '📞' },
-        { id: 'staff', label: 'Staff Directory', icon: '👥' },
+        { id: 'contact', label: 'Contact Us', icon: Phone },
+        { id: 'staff', label: 'Staff Directory', icon: Users },
       ]
     },
     {
       id: 'announcements',
       label: 'Announcements',
-      icon: '📰',
+      icon: Newspaper,
       dropdown: [
-        { id: 'news', label: 'News/Announcements', icon: '📰' },
-        { id: 'programs', label: 'Academic Programs', icon: '📚' },
-        { id: 'calendar', label: 'Calendar & Events', icon: '📅' },
+        { id: 'news', label: 'News/Announcements', icon: Newspaper },
+        { id: 'programs', label: 'Academic Programs', icon: Newspaper },
+        { id: 'calendar', label: 'Calendar & Events', icon: Newspaper },
       ]
     },
-    { id: 'portal', label: 'Student Portal', icon: '👤' },
-    { id: 'gallery', label: 'Photo Gallery', icon: '📷' },
-    { id: 'ai-tools', label: 'AI Tools', icon: '🧠' },
+    { id: 'portal', label: 'Student Portal', icon: UserRound },
+    { id: 'gallery', label: 'Photo Gallery', icon: Camera },
+    { id: 'ai-tools', label: 'AI Tools', icon: BrainCircuit, badge: true },
   ];
 
   const toggleMobileMenu = () => {
@@ -46,34 +48,32 @@ const LandingPage = () => {
     setOpenDropdown(openDropdown === id ? null : id);
   };
 
-
-
   const renderNavigation = () => (
     <nav className={styles.navigation}>
       <div className={styles.navContainer}>
         <div className={styles.navBrand}>
-          <span className={styles.navIcon}>🧠</span>
+          <span className={styles.brandIconWrap}><Icon Cmp={BrainCircuit} /></span>
           <span className={styles.navLogo}>EduPath</span>
         </div>
-        
+
         <div className={styles.desktopNav}>
-          {navigationItems.map(item => (
+          {navigationItems.map((item) => (
             item.dropdown ? (
               <div key={item.id} className={styles.dropdown}>
-                <button 
-                  className={`${styles.navButton} ${currentPage === item.id ? styles.active : ''}`}
+                <button
+                  className={`${styles.navButton} ${item.badge ? styles.badge : ''} ${currentPage === item.id ? styles.active : ''}`}
                   onClick={() => setCurrentPage(item.id)}
                 >
-                  {item.icon} {item.label}
+                  <Icon Cmp={item.icon} /> {item.label}
                 </button>
                 <div className={styles.dropdownMenu}>
-                  {item.dropdown.map(subItem => (
+                  {item.dropdown.map((subItem) => (
                     <button
                       key={subItem.id}
                       onClick={() => setCurrentPage(subItem.id)}
                       className={`${styles.dropdownItem} ${currentPage === subItem.id ? styles.active : ''}`}
                     >
-                      {subItem.icon} {subItem.label}
+                      <Icon Cmp={subItem.icon} /> {subItem.label}
                     </button>
                   ))}
                 </div>
@@ -82,29 +82,29 @@ const LandingPage = () => {
               <button
                 key={item.id}
                 onClick={() => setCurrentPage(item.id)}
-                className={`${styles.navButton} ${currentPage === item.id ? styles.active : ''}`}
+                className={`${styles.navButton} ${item.badge ? styles.badge : ''} ${currentPage === item.id ? styles.active : ''}`}
               >
-                {item.icon} {item.label}
+                <Icon Cmp={item.icon} /> {item.label}
               </button>
             )
           ))}
         </div>
 
-        <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
+        <button className={styles.mobileMenuButton} onClick={toggleMobileMenu} aria-label="Toggle menu">
           {isMobileMenuOpen ? '✕' : '☰'}
         </button>
       </div>
 
       <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.open : ''}`}>
         <div className={styles.mobileNavContent}>
-          {navigationItems.map(item => (
+          {navigationItems.map((item) => (
             item.dropdown ? (
               <div key={item.id} className={`${styles.mobileDropdown} ${openDropdown === item.id ? styles.active : ''}`}>
                 <button onClick={() => toggleDropdown(item.id)} className={styles.mobileNavButton}>
-                  {item.icon} {item.label}
+                  <Icon Cmp={item.icon} /> {item.label}
                 </button>
                 <div className={styles.mobileDropdownMenu}>
-                  {item.dropdown.map(subItem => (
+                  {item.dropdown.map((subItem) => (
                     <button
                       key={subItem.id}
                       onClick={() => {
@@ -113,7 +113,7 @@ const LandingPage = () => {
                       }}
                       className={`${styles.mobileDropdownItem} ${currentPage === subItem.id ? styles.active : ''}`}
                     >
-                      {subItem.icon} {subItem.label}
+                      <Icon Cmp={subItem.icon} /> {subItem.label}
                     </button>
                   ))}
                 </div>
@@ -127,7 +127,7 @@ const LandingPage = () => {
                 }}
                 className={`${styles.mobileNavButton} ${currentPage === item.id ? styles.active : ''}`}
               >
-                {item.icon} {item.label}
+                <Icon Cmp={item.icon} /> {item.label}
               </button>
             )
           ))}
@@ -135,8 +135,6 @@ const LandingPage = () => {
       </div>
     </nav>
   );
-
-
 
   const renderPageContent = () => {
     switch (currentPage) {
@@ -150,18 +148,12 @@ const LandingPage = () => {
                   <h1 className={styles.heroTitle}>Welcome to EduPath</h1>
                   <p className={styles.heroSubtitle}>Empowering students with AI-driven career exploration and intelligent study tools</p>
                   <div className={styles.studentCards}>
-                    <button
-                      onClick={() => setCurrentPage('ai-career-explorer')}
-                      className={styles.studentCard}
-                    >
+                    <button onClick={() => setCurrentPage('ai-career-explorer')} className={styles.studentCard}>
                       <div className={styles.cardIcon}>🎯</div>
                       <h3 className={styles.cardTitle}>High School Students</h3>
                       <p className={styles.cardText}>AI-powered career exploration and guidance</p>
                     </button>
-                    <button
-                      onClick={() => setCurrentPage('ai-tools')}
-                      className={styles.studentCard}
-                    >
+                    <button onClick={() => setCurrentPage('ai-tools')} className={styles.studentCard}>
                       <div className={styles.cardIcon}>🧠</div>
                       <h3 className={styles.cardTitle}>University Students</h3>
                       <p className={styles.cardText}>AI-generated quizzes from your study notes</p>
@@ -189,13 +181,10 @@ const LandingPage = () => {
             </div>
           </div>
         );
-      
       case 'ai-career-explorer':
         return <AICareerExplorer />;
-
       case 'ai-tools':
         return <AIQuizGenerator />;
-      
       case 'about':
         return (
           <div className={styles.aboutPage}>
@@ -203,7 +192,6 @@ const LandingPage = () => {
             <p>Learn more about EduPath and our mission</p>
           </div>
         );
-      
       case 'contact':
         return (
           <div className={styles.contactPage}>
@@ -211,7 +199,6 @@ const LandingPage = () => {
             <p>Get in touch with our team</p>
           </div>
         );
-      
       case 'staff':
         return (
           <div className={styles.staffPage}>
@@ -219,7 +206,6 @@ const LandingPage = () => {
             <p>Meet our team members</p>
           </div>
         );
-      
       case 'news':
         return (
           <div className={styles.newsPage}>
@@ -227,7 +213,6 @@ const LandingPage = () => {
             <p>Latest updates from EduPath</p>
           </div>
         );
-      
       case 'programs':
         return (
           <div className={styles.programsPage}>
@@ -235,7 +220,6 @@ const LandingPage = () => {
             <p>Explore our educational programs</p>
           </div>
         );
-      
       case 'calendar':
         return (
           <div className={styles.calendarPage}>
@@ -243,7 +227,6 @@ const LandingPage = () => {
             <p>Upcoming events and important dates</p>
           </div>
         );
-      
       case 'portal':
         return (
           <div className={styles.portalPage}>
@@ -251,7 +234,6 @@ const LandingPage = () => {
             <p>Access your student dashboard</p>
           </div>
         );
-      
       case 'gallery':
         return (
           <div className={styles.galleryPage}>
@@ -259,7 +241,6 @@ const LandingPage = () => {
             <p>View photos from our events and activities</p>
           </div>
         );
-      
       default:
         return (
           <div className={styles.homePage}>
