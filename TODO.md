@@ -1,0 +1,5 @@
+- [ ] Create AIQuizGenerator.jsx component
+- [ ] Create AIQuizGenerator.module.css
+- [ ] Update LandingPage.jsx to use AICareerExplorer and AIQuizGenerator components
+- [ ] Remove inline rendering functions from LandingPage.jsx
+- [ ] Test the components render correctly
